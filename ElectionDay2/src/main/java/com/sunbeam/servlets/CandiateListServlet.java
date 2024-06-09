@@ -1,11 +1,13 @@
 package com.sunbeam.servlets;
 
 import java.io.IOException;
+
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -46,6 +48,19 @@ protected void processRequest(HttpServletRequest req, HttpServletResponse resp )
 	out.println("</head>");
 	out.println("<body>");
 	out.println("<h3> Online Voting </h3>");
+	
+	String userName = "";
+	Cookie[] arr = req.getCookies();
+	if(arr != null) {
+		for(Cookie c : arr) {
+			if(c.getName().equals("uname")) {
+				userName = c.getValue();
+				break;
+		}
+	}
+}
+	out.printf("hello , %s</hr>\n", userName);
+	
 	out.println("<form method='post' action='vote'>");
 	for (Candidate c : list) {
 
