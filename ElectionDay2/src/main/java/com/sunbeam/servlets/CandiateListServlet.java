@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -60,6 +61,11 @@ protected void processRequest(HttpServletRequest req, HttpServletResponse resp )
 	}
 }
 	out.printf("hello , %s</hr>\n", userName);
+	
+	ServletContext ctx = this.getServletContext();
+			String message = (String) ctx.getAttribute("announcement");
+			if(message != null)
+				out.printf("Announcement: %s<br/><br/>\n", message);
 	
 	out.println("<form method='post' action='vote'>");
 	for (Candidate c : list) {
