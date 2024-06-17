@@ -23,8 +23,10 @@ public class Products {
 	private Category category;
 	@Column(name = "Name", length = 25)
 	private String name;
+	
 	@Column(name = "Price")
 	private double price;
+	
 	@Column(name = "Available_Quantity")
 	private int availableQuantity;
 	
